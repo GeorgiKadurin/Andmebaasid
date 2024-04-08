@@ -16,3 +16,12 @@ sisseastumis_kp date
 --identity(1,1) - määrab igaühele oma numbri
 
 SELECT * FROM opilane;
+
+--andmete lismine
+INSERT INTO opilane(eesnimi,perenimi,isikukood,aadress, sisseastumis_kp)
+
+VALUES(
+'Georgi', 'Kadurin', '85300680384', 'Saku', '2024-04-08')
+
+SELECT * FROM opilane;
+
