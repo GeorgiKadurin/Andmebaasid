@@ -6,3 +6,7 @@ veerg - столб
 kirjed - записи
 väljad - поля
 väärtused - значение
+
+-------
+
+query - запрос - päring
