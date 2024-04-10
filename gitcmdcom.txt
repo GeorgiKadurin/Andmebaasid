@@ -1,0 +1,20 @@
+cd Desktop
+-
+git init (git clone https://github.com/GeorgiKadurin/Andmebaasid.git)
+-
+git config --global user.name "GeorgiKadurin"
+-
+git config --global user.email "georgi.kkadurin@gmail.com"
+-
+git config --global --list
+-
+cd Andmebaasid
+-
+git status
+
+
+--------------------------
+
+git add .
+git commit -a -m ""
+git push
