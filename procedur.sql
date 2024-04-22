@@ -73,3 +73,6 @@ Begin
 	SELECT * FROM film
 	WHERE filmNimetus LIKE CONCAT(@taht,'%');
 End;
+
+--käivitamine
+EXEC otsing1Taht 'L';
