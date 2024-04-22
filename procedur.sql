@@ -76,3 +76,16 @@ End;
 
 --käivitamine
 EXEC otsing1Taht 'L';
+
+--PROTSEDUur mis kutsutab sisestatud id järgi
+
+CREATE procedure kutsutaFilm
+@id int
+AS
+BEGIN
+SELECT * FROM film;
+DELETE FROM film WHERE filmId=@id;
+SELECT * FROM film;
+END;
+
+EXEC kutsutaFilm 42;
