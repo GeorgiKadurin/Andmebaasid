@@ -114,3 +114,18 @@ SELECT * FROM film;
 END;
 
 EXEC lisafilm 'Test', 222, 'Test2', 2000;
+
+--proceduur, mis uuendab rezisööri andmed filmiNimi järgi
+
+CREATE procedure uuendaRezisoorFilmis
+@uusrezisoor varchar(50),
+@filmNimetus varchar(50)
+AS
+BEGIN
+select * from film WHERE filmNimetus=@filmNimetus;;
+UPDATE film SET rezisoor=@uusrezisoor
+WHERE filmNimetus=@filmNimetus;
+select * from film WHERE filmNimetus=@filmNimetus;;
+END;
+
+EXEC uuendaRezisoorFilmis 'Jack Fresko', 'Test'
