@@ -63,3 +63,13 @@ insert into film (filmNimetus, kestvus, rezisoor, v_aasta) values ('Shanghai Sur
 insert into film (filmNimetus, kestvus, rezisoor, v_aasta) values ('Food of the Gods, The', 222, 'Fayina Barukh', 2002);
 
 select * from film;
+
+--filmiNimetus otsing esimese tähe järgi
+
+CREATE Procedure otsing1Taht
+@taht char (1)
+AS
+Begin
+	SELECT * FROM film
+	WHERE filmNimetus LIKE CONCAT(@taht,'%');
+End;
