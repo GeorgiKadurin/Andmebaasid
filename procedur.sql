@@ -129,3 +129,68 @@ select * from film WHERE filmNimetus=@filmNimetus;;
 END;
 
 EXEC uuendaRezisoorFilmis 'Jack Fresko', 'Test'
+
+
+---------------------------------------------------------------------------------------------------------
+
+CREATE TABLE pood(
+poodId int PRIMARY KEY identity(1,1),
+toodeNimi varchar(50),
+hind int,
+kategooria varchar(50));
+select * from pood;
+
+insert into pood (toodeNimi , hind , kategooria ) values ('viinamarja', 3, 'puuvili');
+insert into pood (toodeNimi, hind, kategooria) values ('maasikas', 2, 'puuvili');
+insert into pood (toodeNimi, hind, kategooria) values ('kapsas', 2, 'köögivili');
+insert into pood (toodeNimi, hind, kategooria) values ('kurk', 4, 'köögivili');
+insert into pood (toodeNimi, hind, kategooria) values ('kirss', 6, 'puuvili');
+insert into pood (toodeNimi, hind, kategooria) values ('kõrvits', 12, 'köögivili');
+insert into pood (toodeNimi, hind, kategooria) values ('herned', 3, 'köögivili');
+insert into pood (toodeNimi, hind, kategooria) values ('sibul', 5, 'köögivili');
+insert into pood (toodeNimi, hind, kategooria) values ('sidrun', 1, 'puuvili');
+insert into pood (toodeNimi, hind, kategooria) values ('virsik', 4, 'puuvili');
+
+select * from pood;
+
+--protseduur toodete otsing viimase tähe järgi
+
+CREATE Procedure otsingViimaseTaht
+@taht char (1)
+AS
+Begin
+	SELECT * FROM pood
+	WHERE toodeNimi LIKE CONCAT('%',@taht);
+End;
+
+--käivitamine
+EXEC otsingViimaseTaht 'd';
+
+
+--Protseduur mis leiab toodete summaarne hind
+
+CREATE procedure summaarneHind
+AS
+SELECT SUM(hind) AS 'hind' FROM pood;
+
+--drop procedure summaarneHin
+
+EXEC summaarneHind;
+
+--Protseduur mis uuendab hinda (tingimus kirjuta ise)
+
+
+CREATE procedure uuendabHind
+@uushin int,
+@toodeNimi varchar(50)
+AS
+BEGIN
+select * from pood WHERE toodeNimi=@toodeNimi;
+UPDATE pood SET hind=@uushin
+WHERE toodeNimi=@toodeNimi;
+select * from pood WHERE toodeNimi=@toodeNimi;
+END;
+
+EXEC uuendabHind 12, 'kurk'
+
+--drop procedure uuendabHind
