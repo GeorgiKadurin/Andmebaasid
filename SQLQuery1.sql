@@ -366,7 +366,7 @@ as begin
 	return (select Name from Employees where Id = @Id)
 end
 
--- ?
+-- Kirjutame töötaja nime ja saame tema andmed/dokumendid
 declare @EmployeeName nvarchar(50)
 exec @EmployeeName = spGetNameById2 1
 print 'Name of the employee = ' + @EmployeeName
