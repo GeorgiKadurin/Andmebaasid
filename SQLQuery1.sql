@@ -349,15 +349,15 @@ select @TotalEmployees
 --- Funktsioon kuhu peame sisestama ID ja saame nime
 create proc spGetNameById1
 @Id int,
-@FirstName nvarchar(50) output
+@Name nvarchar(50) output
 as begin
-	select @FirstName = Name from employees where Id = @Id
+	select @Name = Name from employees where Id = @Id
 end
 
---?
-declare @FirstName nvarchar(50)
-execute spGetNameById1 6, @FirstName output
-print 'Name of the employee = ' + @FirstName
+--Saame töötaja nime ID 6-ga ja väljastab selle
+declare @Name nvarchar(50)
+execute spGetNameById1 6, @Name output
+print 'Name of the employee = ' + @Name
 
 --?
 create proc spGetNameById2
