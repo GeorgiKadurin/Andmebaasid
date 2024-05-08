@@ -31,9 +31,13 @@ values (1, 'Female')
 insert into Gender (Id, Gender)
 values (2, 'Male')
 
----	lISA
+select * from Gender
+select * from Person
+
+---	Seostage tabelid
 alter table Person add constraint tblPerson_GenderId_FK
 foreign key (GenderId) references Gender(Id)
+
 
 -- sisestame andmed
 insert into Person (Id, Name, Email, GenderId)
