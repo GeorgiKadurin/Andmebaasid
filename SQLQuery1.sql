@@ -194,7 +194,7 @@ Salary nvarchar(50),
 DepartmentId int
 )
 
---?
+--Täidab tabeli Department ja Employees
 insert into Department (Id, DepartmentName, Location, DepartmentHead)
 values (1, 'IT', 'London', 'Rick')
 insert into Department (Id, DepartmentName, Location, DepartmentHead)
