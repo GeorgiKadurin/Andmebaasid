@@ -229,12 +229,12 @@ values (10, 'Russell', 'Male', 8800, NULL)
 
 select * from Employees
 
----?
+---Valib unikaalsed v‰‰rtused
 select distinct Name, DepartmentId from Employees
 
----?
+---summeerib kıige palkade summa
 select sum(cast(Salary as int)) from Employees
----?
+---
 select min(cast(Salary as int)) from Employees
 
 
@@ -254,9 +254,9 @@ add MiddleName nvarchar(30)
 alter table Employees
 add LastName nvarchar(30)
 
-update Employees set FirstName = 'Tom', MiddleName = 'Nick', LastName = 'Jones'
+update Employees set Name = 'Tom', MiddleName = 'Nick', LastName = 'Jones'
 where Id = 1
-update Employees set FirstName = 'Pam', MiddleName = NULL, LastName = 'Anderson'
+update Employees set Name = 'Pam', MiddleName = NULL, LastName = 'Anderson'
 where Id = 2
 update Employees set FirstName = 'John', MiddleName = NULL, LastName = NULL
 where Id = 3
