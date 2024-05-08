@@ -234,7 +234,7 @@ select distinct Name, DepartmentId from Employees
 
 ---summeerib kõige palkade summa
 select sum(cast(Salary as int)) from Employees
----
+---Võtab välja miinimumpalga
 select min(cast(Salary as int)) from Employees
 
 
