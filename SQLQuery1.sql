@@ -99,12 +99,13 @@ insert into Person (Id, Name, Email, GenderId, Age)
 values (9, 'Test', 'Test', 2, 149)
 
 
---?
+--Meeskond jättis veerust ID 8 rida 
 select * from Person
 go
 delete from Person where Id = 8
 go
 select * from Person
+
 
 --- lisame veeru juurde
 alter table Person
