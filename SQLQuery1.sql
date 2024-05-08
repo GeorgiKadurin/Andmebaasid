@@ -141,7 +141,8 @@ select * from Person where Name like '[^WAS]%'
 
 select * from Gender
 select * from Person
---- ?
+
+--- Näitab ridu, kus linn 'Gotham' või 'New York' ja vanus on suuremad või võrdsed 40-ga
 select * from Person where (City = 'Gotham' or City = 'New York')
 and Age >= 40
 
