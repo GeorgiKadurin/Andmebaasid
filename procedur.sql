@@ -194,3 +194,111 @@ END;
 EXEC uuendabHind 12, 'kurk'
 
 --drop procedure uuendabHind
+
+
+CREATE DATABASE AutoProceduri
+USE AutoProceduri
+
+Create table autod(
+autoId int PRIMARY KEY identity(1,1),
+model varchar(50),
+km int,
+valjaandmiseAasta int,
+varv varchar(50));
+select * from autod;
+
+Create table logitabel(
+id int PRIMARY KEY identity(1,1),
+toiming varchar(50),
+aeg DATETIME,
+autoAndmed TEXT,
+kasutaja varchar(50));
+select * from logitabel;
+
+-----------------------------
+create trigger autoLisanimi
+ON autod
+FOR INSERT
+AS
+BEGIN
+	INSERT INTO logitabel (toiming, aeg , autoAndmed, kasutaja)
+	SELect 'auto on liisatud',
+			GETDATE(),
+			concat(inserted.model,' ' ,inserted.km, ' ', inserted.valjaandmiseAasta, inserted.varv),
+			USER
+	FROM inserted;
+END
+
+insert into autod(model, km, valjaandmiseAasta, varv)
+values ('mercedes', 240023, 2010, 'kolane');
+SELECT * from autod;
+SELECT * FROM logitabel;
+-------------------------------------------
+create trigger autouuendamine
+ON autod
+FOR UPDATE
+AS
+BEGIN
+	INSERT INTO logitabel(toiming, aeg, autoAndmed, kasutaja)
+	SELECT 'auto on uuendatud',
+			GETDATE(),
+       concat( 
+           'vanad: ', deleted.model, ' km: ', deleted.km , ' ValjaandmiseAasta: ', deleted.valjaandmiseAasta,
+           '\n uued: ', inserted.model, ' km: ', inserted.km,' ValjaandmiseAasta: ', inserted.valjaandmiseAasta),
+        USER
+	FROM deleted INNER JOIN inserted
+	ON deleted.autoID=inserted.autoID;
+END;
+
+-------------------------------------------------------------------
+
+
+--1. lisab uued autod
+
+CREATE procedure LisaAutod
+@uusmodel varchar(50),
+@varv varchar(50),
+@valjaandmiseAasta int
+AS
+BEGIN
+	insert into autod(model, varv, valjaandmiseAasta )
+	values (@uusmodel, @varv, @valjaandmiseAasta);
+	select * from autod;
+	select * from logitabel;
+END;
+		
+EXEC LisaAutod 'Honda', 'must', 2008;
+
+--2. näitab autod  sisestatud modeli
+
+CREATE procedure naitabAutod
+@taht varchar(50)
+AS
+Begin
+	select * from autod
+	WHERE model LIKE @taht;
+END;
+
+
+EXEC naitabAutod 'Honda';
+select * from autod;
+
+--3. uuendada auto km
+
+CREATE procedure uueAutod
+@uuskm int,
+@model varchar(50)
+AS
+BEGIN
+select * from autod WHERE model=@model;
+UPDATE autod SET km=@uuskm
+WHERE model=@model;
+select * from autod WHERE model=@model;
+select * from logitabel;
+END;
+
+
+EXEC uueAutod 123030, 'Honda';
+
+
+
