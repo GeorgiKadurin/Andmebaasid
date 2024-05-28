@@ -71,4 +71,29 @@ END
 KyberSport iseseisav töö
 
 
+CREATE TABLE KyberSport(
+KyberSportID int PRIMARY KEY AUTO_INCREMENT,
+KyberRuhmNimi varchar(50),
+OsalejateArv int,
+MangID int,
+FOREIGN KEY(MangID) REFERENCES mang(MangID))
+
+
+--triger
+kasu
+DROP TRIGGER IF EXISTS `KyberLisamine`;CREATE DEFINER=`root`@`localhost` TRIGGER `KyberLisamine` BEFORE INSERT ON `kybersport` FOR EACH ROW INSERT INTO log(User, kuupaev, sisestatudAndmed) Values (USER(), NOW(), concat(NEW.KyberRyhmNimi, ' osalejate: ', NEW.osalejateArv) ) 
+
+lisa
+DROP TRIGGER IF EXISTS `KyberLisamine`;CREATE DEFINER=`root`@`localhost` TRIGGER `KyberLisamine` BEFORE INSERT ON `kybersport` FOR EACH ROW INSERT INTO log(User, kuupaev, sisestatudAndmed) Values (USER(), NOW(), concat(NEW.KyberRyhmNimi, ' osalejate: ', NEW.osalejateArv) ) 
+	
+CREATE TABLE Mang(
+MangID int PRIMARY KEY AUTO_INCREMENT,
+MangNimi varchar(50))
+
+
+
+
+
+
+
 
