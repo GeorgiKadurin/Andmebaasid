@@ -62,3 +62,13 @@ WHERE filmNimetus LIKE concat (filmNimi);
 select * from film WHERE filmNimetus LIKE concat (filmNimi);
 END
 
+
+
+
+
+
+-------------------------------------------------------------------------------
+KyberSport iseseisav töö
+
+
+
